@@ -1,0 +1,80 @@
+# depslib dependency file v1.0
+1718251536 source:c:\users\user\desktop\cartas\main.cpp
+	<iostream>
+	<string>
+	<cstdlib>
+	<ctime>
+	"rlutil.h"
+
+1571584339 c:\users\user\desktop\cartas\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1718298304 source:c:\users\user\desktop\cartas\funciones.cpp
+	<iostream>
+	<string>
+	<cstdlib>
+	<ctime>
+	"rlutil.h"
+	"funciones.h"
+
+1718298477 c:\users\user\desktop\cartas\funciones.h
+
+1718639660 source:c:\users\user\desktop\proyecto final embaucado\main.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	"rlutil.h"
+	"menu.h"
+	"jugar.h"
+
+1718636666 c:\users\user\desktop\proyecto final embaucado\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1718636628 c:\users\user\desktop\proyecto final embaucado\funciones.h
+
+1718637431 source:c:\users\user\desktop\proyecto final embaucado\funciones.cpp
+	<iostream>
+	<string>
+	<cstdlib>
+	<ctime>
+	"rlutil.h"
+	"funciones.h"
+
+1718658656 source:c:\users\user\desktop\proyecto final embaucado\menu.cpp
+	<iostream>
+	"menu.h"
+	"jugar.h"
+
+1718637704 c:\users\user\desktop\proyecto final embaucado\menu.h
+
+1718658919 c:\users\user\desktop\proyecto final embaucado\jugar.h
+
+1718659586 source:c:\users\user\desktop\proyecto final embaucado\jugar.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	"rlutil.h"
+	"jugar.h"
+
