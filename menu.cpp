@@ -6,7 +6,6 @@ using namespace std;
 
 
 const int CANT_JUGADORES=2;
-string jugadores[CANT_JUGADORES];
 
 void desplegarMenu(){
 
@@ -14,7 +13,7 @@ void desplegarMenu(){
   int opcion;
 
   do{
-
+    system("cls");
     cout <<endl << "EMBAUCADO" << endl;
     cout << "-------------------------" << endl;
     cout << "1 - JUGAR" << endl;
@@ -31,12 +30,14 @@ void desplegarMenu(){
 }
 
 void implementarOpcion(int op){
+    string nombreJugador;
+    int mayorPuntaje;
   system("cls");
 
   switch(op)
   {
     case 1://jugar
-      jugar(jugadores);
+      jugar(nombreJugador,mayorPuntaje);
       break;
 
     case 2:
@@ -52,7 +53,6 @@ void implementarOpcion(int op){
 
     default:
       cout << "ERROR: " << op << " No es un numero valido." << endl;
-      system("pause");system("cls");
       break;
 
   }

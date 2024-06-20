@@ -78,3 +78,41 @@
 	"rlutil.h"
 	"jugar.h"
 
+1718859540 source:c:\users\user\desktop\proyecto_final_programacioni-main\jugar.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	"rlutil.h"
+	"jugar.h"
+
+1718660732 c:\users\user\desktop\proyecto_final_programacioni-main\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1718849274 c:\users\user\desktop\proyecto_final_programacioni-main\jugar.h
+
+1718851241 source:c:\users\user\desktop\proyecto_final_programacioni-main\main.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	"rlutil.h"
+	"menu.h"
+	"jugar.h"
+
+1718660732 c:\users\user\desktop\proyecto_final_programacioni-main\menu.h
+
+1718846020 source:c:\users\user\desktop\proyecto_final_programacioni-main\menu.cpp
+	<iostream>
+	"menu.h"
+	"jugar.h"
+

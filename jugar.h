@@ -7,9 +7,9 @@ void dibujarValorCarta(int posx, int posy, std::string valor);
 void dibujarPaloCarta(int posx, int posy, int palo);
 int convertirPalo(const std::string &palo);
 void dibujarCarta(int posx, int posy, std::string valor, std::string palo);
-void dibujarCartaEmbaucadora();
-void repartirCartas(std::string vecJugadores);
-void jugar(std::string vecJugadores[]);
+std::string determinarCartaEmbaucadora();
+void repartirCartas(std::string mazoValorMano[], std::string mazoFiguraMano[], std::string embaucadora);
+void jugar(std::string &nombreJugador, int &mayorPuntaje);
 
 
 

@@ -9,7 +9,7 @@
 
 int main()
 {
-    rlutil::hidecursor();
+
     srand(time(0)); // SEMILLA PARA EL RANDOM
     desplegarMenu();
 
