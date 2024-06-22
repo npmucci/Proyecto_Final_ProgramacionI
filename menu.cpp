@@ -5,8 +5,6 @@
 using namespace std;
 
 
-const int CANT_JUGADORES=2;
-
 void desplegarMenu(){
 
 
@@ -48,7 +46,7 @@ void implementarOpcion(int op){
       break;
     case 0:
       cout << "-------------------------" << endl;
-      cout << "SALIENDO DEL JUEGO. GRACIAS POR JUGAR EMBAUCADO";
+      cout << "SALIENDO DEL JUEGO. GRACIAS POR JUGAR EMBAUCADO" << endl;
       break;
 
     default:
