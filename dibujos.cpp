@@ -75,7 +75,7 @@ void dibujarCarta(int posx, int posy, string valor, string palo)
 
 
 
-void repartirCartas(string mazoValorMano[], string mazoFiguraMano[], string embaucadora, int tamMazo)
+void dibujarCartasMano(string mazoValorMano[], string mazoFiguraMano[], string embaucadora, int tamMazo)
 {
     rlutil::hidecursor();
 

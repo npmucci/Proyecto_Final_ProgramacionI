@@ -6,8 +6,6 @@ using namespace std;
 
 
 void desplegarMenu(){
-
-
   int opcion;
 
   do{

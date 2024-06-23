@@ -4,6 +4,7 @@
 #include "rlutil.h"
 #include "menu.h"
 #include "jugar.h"
+#include "dibujos.h"
 
 
 
