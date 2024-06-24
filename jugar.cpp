@@ -13,8 +13,7 @@ void cargarNombre(string vecJugadores[])
 
     do
     {
-        cout << "EMBAUCADO" << endl;
-        cout << "------------------------------------------------------------------------" << endl;
+        dibujarEncabezado();
         cout << "Antes de comenzar deben registrar sus nombres: " << endl << endl;
 
         cout << "Nombre del Jugador 1 ";
@@ -238,10 +237,9 @@ void jugar(string &jugadorMayorPuntaje, int &mayorPuntaje)
     //2° se utiliza un ciclo for para implementar la logica de cada una de las rondas
      for (int ronda = 1; ronda <= CANT_RONDAS; ronda++)
     {
-        cout << "EMBAUCADO" << endl;
-        cout << "------------------------------------------------------------------------" << endl;
-        cout << "Ronda #" << ronda << endl;
-        cout << vecJugadores[0] << " VS " << vecJugadores[1] << endl;
+        dibujarEncabezado();
+       centrarTexto(3, "Ronda #" + to_string(ronda));
+       centrarTexto(4, vecJugadores[0] + " VS " + vecJugadores[1]);
         // Funcionalidad específica para cada ronda
         switch(ronda)
         {
@@ -256,6 +254,7 @@ void jugar(string &jugadorMayorPuntaje, int &mayorPuntaje)
             puntosRondaJugadorDos[ronda-1]=sumarVector(puntosCartasJugadorDos,5);
             puntosAcumuladosJugadorUno=sumarVector(puntosRondaJugadorUno,3);
             puntosAcumuladosJugadorDos=sumarVector(puntosRondaJugadorDos,3);
+            dibujarResultadosPorRonda(vecJugadores,puntosCartasJugadorUno,puntosRondaJugadorDos,puntosAcumuladosJugadorUno,puntosAcumuladosJugadorDos);
             break;
         //antes de mostrar los puntos se presgunta al jugador 1 si quiere cambiar la carta embaucadora
         case 2:
@@ -302,6 +301,7 @@ void jugar(string &jugadorMayorPuntaje, int &mayorPuntaje)
                     rlutil::locate(1, 31);
                 }
             }
+                dibujarResultadosPorRonda(vecJugadores,puntosCartasJugadorUno,puntosRondaJugadorDos,puntosAcumuladosJugadorUno,puntosAcumuladosJugadorDos);
             break;
         case 3:
             repartirCartas(VEC_VALOR, VEC_FIGURA, mazoValorMano, mazoFiguraMano,vecJugadores, puntosCartasJugadorUno, puntosCartasJugadorDos, puntosAcumuladosJugadorUno, puntosAcumuladosJugadorDos, TAM_MAZO_MANO);
@@ -348,6 +348,8 @@ void jugar(string &jugadorMayorPuntaje, int &mayorPuntaje)
 
                 }
             }
+                        dibujarResultadosPorRonda(vecJugadores,puntosCartasJugadorUno,puntosRondaJugadorDos,puntosAcumuladosJugadorUno,puntosAcumuladosJugadorDos);
+            break;
         }
         system("pause");
         rlutil::cls();

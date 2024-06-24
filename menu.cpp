@@ -1,6 +1,9 @@
 #include <iostream>
 #include "menu.h"
+#include "dibujos.h"
 #include "jugar.h"
+#include "creditos.h"
+
 
 using namespace std;
 
@@ -10,8 +13,8 @@ void desplegarMenu(){
 
   do{
     system("cls");
-    cout <<endl << "EMBAUCADO" << endl;
-    cout << "-------------------------" << endl;
+   dibujarEncabezado();
+
     cout << "1 - JUGAR" << endl;
     cout << "2 - ESTADISTICAS" << endl;
     cout << "3 - CREDITOS" << endl;
@@ -41,6 +44,7 @@ void implementarOpcion(int op){
       break;
     case 3:
       //credigos
+          mostrarCreditos();
       break;
     case 0:
       cout << "-------------------------" << endl;

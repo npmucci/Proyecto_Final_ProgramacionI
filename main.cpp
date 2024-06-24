@@ -10,7 +10,8 @@
 
 int main()
 {
-
+     rlutil::setBackgroundColor(rlutil::YELLOW);
+      rlutil::setColor(rlutil::BLACK);
     srand(time(0)); // SEMILLA PARA EL RANDOM
     desplegarMenu();
 

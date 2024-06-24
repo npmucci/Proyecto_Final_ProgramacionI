@@ -116,7 +116,7 @@
 	"menu.h"
 	"jugar.h"
 
-1719166991 source:c:\users\user\desktop\proyecto_final_programacioni\main.cpp
+1719193180 source:c:\users\user\desktop\proyecto_final_programacioni\main.cpp
 	<iostream>
 	<cstdlib>
 	<ctime>
@@ -143,12 +143,14 @@
 
 1719166991 c:\users\user\desktop\proyecto_final_programacioni\jugar.h
 
-1719166991 source:c:\users\user\desktop\proyecto_final_programacioni\menu.cpp
+1719197881 source:c:\users\user\desktop\proyecto_final_programacioni\menu.cpp
 	<iostream>
 	"menu.h"
+	"dibujos.h"
 	"jugar.h"
+	"creditos.h"
 
-1719076705 source:c:\users\user\desktop\proyecto_final_programacioni\jugar.cpp
+1719199367 source:c:\users\user\desktop\proyecto_final_programacioni\jugar.cpp
 	<iostream>
 	<cstdlib>
 	<ctime>
@@ -156,10 +158,17 @@
 	"jugar.h"
 	"dibujos.h"
 
-1719166991 source:c:\users\user\desktop\proyecto_final_programacioni\dibujos.cpp
+1719199624 source:c:\users\user\desktop\proyecto_final_programacioni\dibujos.cpp
 	<iostream>
 	"rlutil.h"
 	"dibujos.h"
 
-1719166991 c:\users\user\desktop\proyecto_final_programacioni\dibujos.h
+1719197322 c:\users\user\desktop\proyecto_final_programacioni\dibujos.h
+
+1719196994 source:c:\users\user\desktop\proyecto_final_programacioni\creditos.cpp
+	<iostream>
+	"rlutil.h"
+	"dibujos.h"
+
+1719196984 c:\users\user\desktop\proyecto_final_programacioni\creditos.h
 

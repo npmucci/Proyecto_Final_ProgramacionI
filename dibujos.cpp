@@ -4,6 +4,45 @@
 
 using namespace std;
 
+// Función para dibujar el encabezado
+  void dibujarEncabezado() {
+    centrarTexto(1, "EMBAUCADO");
+    cout <<endl << "------------------------------------------------------------------------------------------------------------------------";
+    cout<< endl;
+}
+
+// Función para centrar texto horizontalmente
+void centrarTexto(int y, string texto) {
+    int longitud = texto.length();
+    int x = (rlutil::tcols() - longitud) / 2;
+    rlutil::locate(x, y);
+    cout << texto;
+}
+
+// Función para dibujar un recuadro
+void dibujarRecuadro(int x, int y, int ancho, int alto) {
+    for (int i = 0; i < ancho; i++) {
+        rlutil::locate(x + i, y);
+        cout << "-"; // Línea horizontal superior
+        rlutil::locate(x + i, y + alto - 1);
+        cout << "-"; // Línea horizontal inferior
+    }
+    for (int i = 0; i < alto; i++) {
+        rlutil::locate(x, y + i);
+        cout << "|"; // Línea vertical izquierda
+        rlutil::locate(x + ancho - 1, y + i);
+        cout << "|"; // Línea vertical derecha
+    }
+    rlutil::locate(x, y);
+    cout << "+"; // Esquina superior izquierda
+    rlutil::locate(x + ancho - 1, y);
+    cout << "+"; // Esquina superior derecha
+    rlutil::locate(x, y + alto - 1);
+    cout << "+"; // Esquina inferior izquierda
+    rlutil::locate(x + ancho - 1, y + alto - 1);
+    cout << "+"; // Esquina inferior derecha
+}
+
 void dibujarEstructuraCarta(int posx, int posy, int ancho, int alto)
 {
     for (int x = posx; x < posx + ancho; x++)
@@ -51,8 +90,8 @@ void dibujarPaloCarta(int posx, int posy, int palo)
         rlutil::setColor(rlutil::BLACK);
     }
     cout << (char) palo;
-    rlutil::setBackgroundColor(rlutil::BLACK);
-    rlutil::setColor(rlutil::WHITE);
+    rlutil::setBackgroundColor(rlutil::YELLOW);
+    rlutil::setColor(rlutil::BLACK);
 }
 
 int convertirPalo(const string &palo)
@@ -80,7 +119,7 @@ void dibujarCartasMano(string mazoValorMano[], string mazoFiguraMano[], string e
     rlutil::hidecursor();
 
     // Mostrar las cartas del jugador 1
-    rlutil::setColor(rlutil::WHITE);
+
     for (int i = 0; i < tamMazo / 2; i++)
     {
         dibujarCarta((i+1) * 16, 8, mazoValorMano[i], mazoFiguraMano[i]);
@@ -105,21 +144,73 @@ void dibujarCartasMano(string mazoValorMano[], string mazoFiguraMano[], string e
 
 void mostrarPuntaje(int puntosJugadorUno[], int puntosJugadorDos[]) {
     // Mostrar puntos de las cartas del jugador 1
-     rlutil::locate(1,16);
+     rlutil::locate(3,16);
     cout << "Puntos ";
-    rlutil::setColor(rlutil::WHITE);
     for (int i = 0; i < 5; i++) {
         rlutil::locate((i + 1) * 17, 16);
         cout << puntosJugadorUno[i] << " pts";
     }
 
     // Mostrar puntos de las cartas del jugador 2
-     rlutil::locate(1,28);
+     rlutil::locate(3,28);
     cout << "Puntos ";
     for (int i = 0; i < 5; i++) {
         rlutil::locate((i + 1) * 17, 28);
-        cout << puntosJugadorDos[i] << "pts"
-         ;
+        cout << puntosJugadorDos[i] << "pts";
     }
+    cout << "\nPresione una tecla par continuar...";
+    rlutil::anykey();
+}
+
+
+// Función para mostrar los resultados por ronda dentro de un recuadro
+void dibujarResultadosPorRonda(string vecJugadores[],int vecCartasJugadorUno[],int vecCartasJugadorDos[], int totalUno, int totalDos) {
+    rlutil::cls();
+    int x = 5;
+    int y = 3;
+    int ancho = 60;
+    int alto = 15;
+
+    dibujarRecuadro(x, y, ancho, alto);
+
+
+    rlutil::locate(x + 2, y + 1);
+    cout << "RONDA" << "             " << vecJugadores[0]<< "                 " << vecJugadores[1];
+    rlutil::locate(x + 1, y + 2);
+    cout << "----------------------------------------------------------";
+
+    for (int i = 0; i < 3; ++i) {
+        rlutil::locate(x + 2, y + 3 + i);
+        if(vecCartasJugadorUno[i]==0){
+
+        cout << i+1 << "                  " << "-";
+        }
+        else{
+        cout << i+1 << "                  " << vecCartasJugadorUno[i];
+        }
+         if(vecCartasJugadorDos[i]==0){
+
+         cout << i+1 << "                       " << "-";
+        }
+        else{
+            cout << "                       "<< vecCartasJugadorDos[i];
+
+        }
+
+
+
+    rlutil::locate(x + 1, y + 6);
+    cout << "----------------------------------------------------------";
+
+    rlutil::locate(x + 2, y + 7);
+    cout << "TOTAL" << "               " << totalUno<< "                     " << totalDos;
+
+
+
+
+    rlutil::locate(x + 2, y + 9);
+
+
+}
 }
 

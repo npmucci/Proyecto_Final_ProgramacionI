@@ -32,6 +32,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="creditos.cpp" />
+		<Unit filename="creditos.h" />
 		<Unit filename="dibujos.cpp" />
 		<Unit filename="dibujos.h" />
 		<Unit filename="jugar.cpp" />
