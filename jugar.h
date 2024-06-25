@@ -6,7 +6,7 @@ std::string determinarCartaEmbaucadora(std::string vecFigura[], int tamVecFigura
 void calcularPuntosCartas(int puntosJugadorUno[], int puntosJugadorDos[], std::string vecValor[], std::string vecFigura[], std::string embaucadora);
 int sumarVector(int vecPuntos[], int tamanio);
 void repartirCartas(std::string const vecValor[], std::string const vecFigura[], std::string vecValorMano[], std::string vecFiguraMano[], std::string vecJugadores[], int puntosJugadorUno[], int puntosJugadorDos[], int puntosAcumuladosJugadorUno, int puntosAcumuladosJugadorDos);
-void jugar(std::string &nombreJugador, int &mayorPuntaje);
+void jugar(std::string &nombreGanador, int &puntajeGanador, std::string &jugadorMejorPuntaje, int &mejorPuntaje);
 void determinarGanador(int vecRondaJugadorUno[], int vecRondaJugadorDos[], int puntosTotalesJugadorUno, int puntosTotalesJugadorDos, std::string vecJugadores[], std::string &jugadorMayorPuntaje, int &mayorPuntaje);
 void desempatar(int vecRondaJugadorUno[], int vecRondaJugadorDos[], int puntosTotalesJugadorUno, int puntosTotalesJugadorDos, std::string vecJugadores[], std::string &jugadorMayorPuntaje, int &mayorPuntaje);
 

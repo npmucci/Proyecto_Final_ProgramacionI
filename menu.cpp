@@ -14,9 +14,8 @@ using namespace std;
 void desplegarMenu(){
     string jugadorGanador;
     string jugadorMayorPuntaje;
-    int puntajeGanador;
-    int puntajeMayor;
-    bool hayEstadistica = false;
+    int puntajeGanador=0;
+    int puntajeMayor=0;
     int opcion;
 
   do{
@@ -32,25 +31,25 @@ void desplegarMenu(){
     cout << "Ingrese su opcion: ";
     cin >> opcion;
 
-    implementarOpcion(opcion, jugadorGanador,puntajeGanador,jugadorMayorPuntaje,puntajeMayor,hayEstadistica);
+    implementarOpcion(opcion, jugadorGanador,puntajeGanador,jugadorMayorPuntaje,puntajeMayor);
 
   }while(opcion != 0);
 }
 
-void implementarOpcion(int op, string &nombreGanador, int &puntajeGanador,string &nombreMayorPuntaje, int &puntajeMayor, bool &hayEstadistica){
+void implementarOpcion(int op, string &nombreGanador, int &puntajeGanador,string &nombreMayorPuntaje, int &puntajeMayor){
 
   system("cls");
 
   switch(op)
   {
     case 1://jugar
-      jugar(nombreGanador,puntajeGanador);
+      jugar(nombreGanador,puntajeGanador,nombreMayorPuntaje,puntajeMayor);
       system("cls");
       break;
 
     case 2:
       //estadisticas
-      actualizarEstadistica(nombreGanador,puntajeGanador,nombreMayorPuntaje,puntajeMayor,hayEstadistica);
+      mostrarEstadistica(nombreMayorPuntaje,puntajeMayor);
       break;
     case 3:
       //credigos

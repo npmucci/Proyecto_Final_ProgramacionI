@@ -6,15 +6,13 @@
 using namespace std;
 
 // Función para actualizar las estadísticas con el nombre y puntaje del ganador de cada partida
-void actualizarEstadistica(string &nombreGanador, int &puntajeGanador, string &mejorJugador,int &mejorPuntaje, bool &hayEstadisticas) {
+void actualizarEstadistica(string &nombreGanador, int &puntajeGanador, string &mejorJugador,int &mejorPuntaje) {
 
-    if (!hayEstadisticas || puntajeGanador > mejorPuntaje) {
+    if (puntajeGanador > mejorPuntaje) {
         mejorJugador = nombreGanador;
         mejorPuntaje = puntajeGanador;
-        hayEstadisticas = true;
-    }
 
-    mostrarEstadistica(mejorJugador, mejorPuntaje);
+    }
 }
 
 // Función para mostrar las estadísticas en la consola

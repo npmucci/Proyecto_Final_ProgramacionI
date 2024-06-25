@@ -4,6 +4,7 @@
 #include "rlutil.h"
 #include "jugar.h"
 #include "dibujos.h"
+#include "estadistica.h"
 
 using namespace std;
 
@@ -239,7 +240,7 @@ void desempatar(int vecRondaJugadorUno[], int vecRondaJugadorDos[], int puntosTo
 
 }
 
-void jugar(string &jugadorMayorPuntaje, int &mayorPuntaje)
+void jugar(string &nombreGanador, int &puntajeGanador, string &jugadorMejorPuntaje, int &mejorPuntaje)
 {
     //mazos con los que se van a jugar
     const string VEC_VALOR[5] = {"10", "J", "Q", "K", "A"};
@@ -397,9 +398,10 @@ void jugar(string &jugadorMayorPuntaje, int &mayorPuntaje)
                 mostrarPuntaje(puntosCartasJugadorUno, puntosCartasJugadorDos);
                 puntosAcumuladosJugadorUno = sumarVector(puntosRondaJugadorUno, 3);
                 puntosAcumuladosJugadorDos = sumarVector(puntosRondaJugadorDos, 3);
-                determinarGanador(puntosRondaJugadorUno,puntosRondaJugadorDos,puntosAcumuladosJugadorUno,puntosAcumuladosJugadorDos,vecJugadores,jugadorMayorPuntaje,mayorPuntaje);
+                determinarGanador(puntosRondaJugadorUno,puntosRondaJugadorDos,puntosAcumuladosJugadorUno,puntosAcumuladosJugadorDos,vecJugadores,nombreGanador,puntajeGanador);
                 dibujarResultadosPorRonda(vecJugadores, puntosRondaJugadorUno, puntosRondaJugadorDos, puntosAcumuladosJugadorUno, puntosAcumuladosJugadorDos);
-                dibujarGanador(jugadorMayorPuntaje,mayorPuntaje);
+                dibujarGanador(nombreGanador,puntajeGanador);
+                actualizarEstadistica(nombreGanador,puntajeGanador, jugadorMejorPuntaje,mejorPuntaje);
                 break;
         }
 
