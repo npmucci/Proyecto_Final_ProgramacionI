@@ -1,4 +1,4 @@
 #pragma once
 
-void actualizarEstadistica(std::string nombre, int puntaje, bool &hayEstadistica);
-void mostrarEstadistica(std::string nombreJugador, int puntajeJugador, bool hayEstadistica);
+void actualizarEstadistica(std::string &nombreGanador, int &puntajeGanador, std::string &mejorJugador,int &mejorPuntaje, bool &hayEstadisticas);
+void mostrarEstadistica(std::string nombreJugador, int puntajeJugador);

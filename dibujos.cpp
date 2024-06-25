@@ -142,7 +142,7 @@ void dibujarCartasMano(string mazoValorMano[], string mazoFiguraMano[], string e
     rlutil::locate(1, 29);
 }
 
-void mostrarEstadistica(int puntosJugadorUno[], int puntosJugadorDos[]) {
+void mostrarPuntaje(int puntosJugadorUno[], int puntosJugadorDos[]) {
     // Mostrar puntos de las cartas del jugador 1
      rlutil::locate(3,16);
     cout << "Puntos ";

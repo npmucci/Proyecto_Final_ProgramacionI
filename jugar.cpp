@@ -288,7 +288,7 @@ void jugar(string &jugadorMayorPuntaje, int &mayorPuntaje)
                 repartirCartas(VEC_VALOR, VEC_FIGURA, mazoValorMano, mazoFiguraMano, vecJugadores, puntosCartasJugadorUno, puntosCartasJugadorDos, puntosAcumuladosJugadorUno, puntosAcumuladosJugadorDos, TAM_MAZO_MANO);
                 cout << "Para ver el puntaje presione una tecla ";
                 rlutil::anykey();
-                mostrarEstadistica(puntosCartasJugadorUno, puntosCartasJugadorDos);
+                mostrarPuntaje(puntosCartasJugadorUno, puntosCartasJugadorDos);
                 cout << endl;
                 puntosRondaJugadorUno[ronda - 1] = sumarVector(puntosCartasJugadorUno, 5);
                 puntosRondaJugadorDos[ronda - 1] = sumarVector(puntosCartasJugadorDos, 5);
@@ -350,7 +350,7 @@ void jugar(string &jugadorMayorPuntaje, int &mayorPuntaje)
                 rlutil::locate(1, 29);
                 cout << "\nPara ver el puntaje presione una tecla ";
                 rlutil::anykey();
-                mostrarEstadistica(puntosCartasJugadorUno, puntosCartasJugadorDos);
+                mostrarPuntaje(puntosCartasJugadorUno, puntosCartasJugadorDos);
                 puntosAcumuladosJugadorUno = sumarVector(puntosRondaJugadorUno, 3);
                 puntosAcumuladosJugadorDos = sumarVector(puntosRondaJugadorDos, 3);
                 dibujarResultadosPorRonda(vecJugadores, puntosRondaJugadorUno, puntosRondaJugadorDos, puntosAcumuladosJugadorUno, puntosAcumuladosJugadorDos);
@@ -394,10 +394,10 @@ void jugar(string &jugadorMayorPuntaje, int &mayorPuntaje)
                 rlutil::locate(1, 29);
                 cout << "\nPara ver el puntaje presione una tecla ";
                 rlutil::anykey();
-                mostrarEstadistica(puntosCartasJugadorUno, puntosCartasJugadorDos);
-                determinarGanador(puntosRondaJugadorUno,puntosRondaJugadorDos,puntosAcumuladosJugadorUno,puntosAcumuladosJugadorDos,vecJugadores,jugadorMayorPuntaje,mayorPuntaje);
+                mostrarPuntaje(puntosCartasJugadorUno, puntosCartasJugadorDos);
                 puntosAcumuladosJugadorUno = sumarVector(puntosRondaJugadorUno, 3);
                 puntosAcumuladosJugadorDos = sumarVector(puntosRondaJugadorDos, 3);
+                determinarGanador(puntosRondaJugadorUno,puntosRondaJugadorDos,puntosAcumuladosJugadorUno,puntosAcumuladosJugadorDos,vecJugadores,jugadorMayorPuntaje,mayorPuntaje);
                 dibujarResultadosPorRonda(vecJugadores, puntosRondaJugadorUno, puntosRondaJugadorDos, puntosAcumuladosJugadorUno, puntosAcumuladosJugadorDos);
                 dibujarGanador(jugadorMayorPuntaje,mayorPuntaje);
                 break;

@@ -6,20 +6,19 @@
 using namespace std;
 
 // Función para actualizar las estadísticas con el nombre y puntaje del ganador de cada partida
-void actualizarEstadistica(string nombre, int puntaje, bool &hayEstadisticas) {
-    string mejorJugador;
-    int mejorPuntaje;
-    if (!hayEstadisticas || puntaje > mejorPuntaje) {
-        mejorJugador = nombre;
-        mejorPuntaje = puntaje;
+void actualizarEstadistica(string &nombreGanador, int &puntajeGanador, string &mejorJugador,int &mejorPuntaje, bool &hayEstadisticas) {
+
+    if (!hayEstadisticas || puntajeGanador > mejorPuntaje) {
+        mejorJugador = nombreGanador;
+        mejorPuntaje = puntajeGanador;
         hayEstadisticas = true;
     }
 
-    mostrarEstadistica(mejorJugador, mejorPuntaje, hayEstadisticas);
+    mostrarEstadistica(mejorJugador, mejorPuntaje);
 }
 
 // Función para mostrar las estadísticas en la consola
-void mostrarEstadistica(string mejorJugador, int mejorPuntaje, bool hayEstadisticas) {
+void mostrarEstadistica(string mejorJugador, int mejorPuntaje) {
     dibujarEncabezado("EMBAUCADO");
     rlutil::cls();
 
