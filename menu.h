@@ -2,7 +2,7 @@
 
 
 void desplegarMenu();
-void implementarOpcion(int op);
+void implementarOpcion(int op, std::string &nombreJugador, int &mayorPuntaje, bool &hayEstadistica);
 
 
 

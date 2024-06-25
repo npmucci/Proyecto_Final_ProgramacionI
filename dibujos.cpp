@@ -5,8 +5,8 @@
 using namespace std;
 
 // Función para dibujar el encabezado
-  void dibujarEncabezado() {
-    centrarTexto(1, "EMBAUCADO");
+  void dibujarEncabezado(string texto) {
+    centrarTexto(1, texto);
     cout <<endl << "------------------------------------------------------------------------------------------------------------------------";
     cout<< endl;
 }
@@ -90,8 +90,8 @@ void dibujarPaloCarta(int posx, int posy, int palo)
         rlutil::setColor(rlutil::BLACK);
     }
     cout << (char) palo;
-    rlutil::setBackgroundColor(rlutil::YELLOW);
-    rlutil::setColor(rlutil::BLACK);
+    rlutil::setBackgroundColor(rlutil::BLACK);
+    rlutil::setColor(rlutil::WHITE);
 }
 
 int convertirPalo(const string &palo)
@@ -142,7 +142,7 @@ void dibujarCartasMano(string mazoValorMano[], string mazoFiguraMano[], string e
     rlutil::locate(1, 29);
 }
 
-void mostrarPuntaje(int puntosJugadorUno[], int puntosJugadorDos[]) {
+void mostrarEstadistica(int puntosJugadorUno[], int puntosJugadorDos[]) {
     // Mostrar puntos de las cartas del jugador 1
      rlutil::locate(3,16);
     cout << "Puntos ";
@@ -158,59 +158,66 @@ void mostrarPuntaje(int puntosJugadorUno[], int puntosJugadorDos[]) {
         rlutil::locate((i + 1) * 17, 28);
         cout << puntosJugadorDos[i] << "pts";
     }
+    rlutil::locate(1, 30);
     cout << "\nPresione una tecla par continuar...";
     rlutil::anykey();
 }
 
 
 // Función para mostrar los resultados por ronda dentro de un recuadro
-void dibujarResultadosPorRonda(string vecJugadores[],int vecCartasJugadorUno[],int vecCartasJugadorDos[], int totalUno, int totalDos) {
+void dibujarResultadosPorRonda(string vecJugadores[], int vecCartasJugadorUno[], int vecCartasJugadorDos[], int totalUno, int totalDos) {
     rlutil::cls();
-    int x = 5;
-    int y = 3;
+    dibujarEncabezado("PUNTAJE");
+
     int ancho = 60;
-    int alto = 15;
+    int alto = 10;
+    int x = (rlutil::tcols() - ancho) / 2;
+    int y = 5;
 
     dibujarRecuadro(x, y, ancho, alto);
 
-
     rlutil::locate(x + 2, y + 1);
-    cout << "RONDA" << "             " << vecJugadores[0]<< "                 " << vecJugadores[1];
+    cout << "RONDA" << "             " << vecJugadores[0] << "                 " << vecJugadores[1];
     rlutil::locate(x + 1, y + 2);
     cout << "----------------------------------------------------------";
 
     for (int i = 0; i < 3; ++i) {
         rlutil::locate(x + 2, y + 3 + i);
-        if(vecCartasJugadorUno[i]==0){
+        cout << i + 1 << "                  ";
 
-        cout << i+1 << "                  " << "-";
-        }
-        else{
-        cout << i+1 << "                  " << vecCartasJugadorUno[i];
-        }
-         if(vecCartasJugadorDos[i]==0){
-
-         cout << i+1 << "                       " << "-";
-        }
-        else{
-            cout << "                       "<< vecCartasJugadorDos[i];
-
+        if (vecCartasJugadorUno[i] == 0) {
+            cout << "-";
+        } else {
+            cout << vecCartasJugadorUno[i];
         }
 
-
+        rlutil::locate(x + 44, y + 3 + i);
+        if (vecCartasJugadorDos[i] == 0) {
+            cout << "-";
+        } else {
+            cout << vecCartasJugadorDos[i];
+        }
+    }
 
     rlutil::locate(x + 1, y + 6);
     cout << "----------------------------------------------------------";
 
     rlutil::locate(x + 2, y + 7);
-    cout << "TOTAL" << "               " << totalUno<< "                     " << totalDos;
-
-
-
-
-    rlutil::locate(x + 2, y + 9);
-
-
+    cout << "TOTAL" << "               " << totalUno << "                     " << totalDos;
+    rlutil::locate(40, 18);
+      rlutil::anykey("Presiona una tecla para continuar...");
 }
+
+
+void dibujarGanador (string nombreGanador, int puntajeGanador){
+    rlutil::locate(43,16);
+    rlutil::setBackgroundColor(rlutil::WHITE);
+    rlutil::setColor(rlutil::BLACK);
+    cout << "  GANADOR: " << nombreGanador << " con " << puntajeGanador  << " puntos.  ";
+
+    rlutil::setBackgroundColor(rlutil::BLACK);
+    rlutil::setColor(rlutil::WHITE);
+     rlutil::locate(40, 18);
+
 }
 

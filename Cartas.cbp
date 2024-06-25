@@ -36,6 +36,8 @@
 		<Unit filename="creditos.h" />
 		<Unit filename="dibujos.cpp" />
 		<Unit filename="dibujos.h" />
+		<Unit filename="estadistica.cpp" />
+		<Unit filename="estadistica.h" />
 		<Unit filename="jugar.cpp" />
 		<Unit filename="jugar.h" />
 		<Unit filename="main.cpp" />

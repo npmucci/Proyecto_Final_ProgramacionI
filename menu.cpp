@@ -1,19 +1,26 @@
 #include <iostream>
+#include "rlutil.h"
 #include "menu.h"
 #include "dibujos.h"
 #include "jugar.h"
+#include "estadistica.h"
 #include "creditos.h"
+
 
 
 using namespace std;
 
 
 void desplegarMenu(){
-  int opcion;
+    string nombreJugador="";
+    int mayorPuntaje=0;
+    bool hayEstadistica = false;
+    int opcion;
 
   do{
+    rlutil::setColor(rlutil::WHITE);
     system("cls");
-   dibujarEncabezado();
+   dibujarEncabezado("EMBAUCADO");
 
     cout << "1 - JUGAR" << endl;
     cout << "2 - ESTADISTICAS" << endl;
@@ -23,28 +30,31 @@ void desplegarMenu(){
     cout << "Ingrese su opcion: ";
     cin >> opcion;
 
-    implementarOpcion(opcion);
+    implementarOpcion(opcion, nombreJugador,mayorPuntaje,hayEstadistica);
 
   }while(opcion != 0);
 }
 
-void implementarOpcion(int op){
-    string nombreJugador;
-    int mayorPuntaje;
+void implementarOpcion(int op, string &nombreJugador, int &mayorPuntaje, bool &hayEstadistica){
+
   system("cls");
 
   switch(op)
   {
     case 1://jugar
       jugar(nombreJugador,mayorPuntaje);
+      system("cls");
+      cout << nombreJugador << mayorPuntaje;
       break;
 
     case 2:
       //estadisticas
+      actualizarEstadistica(nombreJugador,mayorPuntaje,hayEstadistica);
       break;
     case 3:
       //credigos
           mostrarCreditos();
+
       break;
     case 0:
       cout << "-------------------------" << endl;
@@ -56,8 +66,6 @@ void implementarOpcion(int op){
       break;
 
   }
-
-  system("pause");
 
 
 }
