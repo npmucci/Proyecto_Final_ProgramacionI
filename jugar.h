@@ -11,7 +11,7 @@ bool manejarRespuesta(char respuesta,int posx,int posy);
 
 //funciones para gestionar los mazos y la mebaucadora
 void cargarMazoMano(const std::string vecValor[], const std::string vecPalos[], std::string mazoValorMano[], std::string mazoPaloMano[], int tamMazoMano, int tamVecValor, int tamVecPalo);
-std::string determinarCartaEmbaucadora(std::string vecFigura[], int tamVecFigura);
+std::string determinarCartaEmbaucadora(const std::string vecFigura[], int tamVecFigura);
 
 ///funciones para para las rondas y puntos
 void calcularPuntosCartas(int puntosJugadorUno[], int puntosJugadorDos[], std::string vecValor[], std::string vecFigura[], std::string embaucadora);

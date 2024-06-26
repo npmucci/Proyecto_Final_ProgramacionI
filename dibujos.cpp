@@ -4,14 +4,14 @@
 
 using namespace std;
 
-// Función para dibujar el encabezado
+/// Función para dibujar el encabezado
   void dibujarEncabezado(string texto) {
     centrarTexto(1, texto);
     cout <<endl << "------------------------------------------------------------------------------------------------------------------------";
     cout<< endl;
 }
 
-// Función para centrar texto horizontalmente
+/// Función para centrar texto horizontalmente
 void centrarTexto(int y, string texto) {
     int longitud = texto.length();
     int x = (rlutil::tcols() - longitud) / 2;
@@ -19,7 +19,7 @@ void centrarTexto(int y, string texto) {
     cout << texto;
 }
 
-// Función para dibujar un recuadro
+/// Función para dibujar un recuadro de los créditos, estadísicas y puntaje por ronda
 void dibujarRecuadro(int x, int y, int ancho, int alto) {
     for (int i = 0; i < ancho; i++) {
         rlutil::locate(x + i, y);
@@ -43,6 +43,7 @@ void dibujarRecuadro(int x, int y, int ancho, int alto) {
     cout << "+"; // Esquina inferior derecha
 }
 
+///Dibuja la estucura de carta (la parte blanca)
 void dibujarEstructuraCarta(int posx, int posy, int ancho, int alto)
 {
     for (int x = posx; x < posx + ancho; x++)
@@ -56,6 +57,7 @@ void dibujarEstructuraCarta(int posx, int posy, int ancho, int alto)
     }
 }
 
+/// dubuja los valores de la carta en las puntas
 void dibujarValorCarta(int posx, int posy, string valor)
 {
     rlutil::locate(posx + 1, posy);
@@ -75,7 +77,8 @@ void dibujarValorCarta(int posx, int posy, string valor)
     }
 }
 
-void dibujarPaloCarta(int posx, int posy, int palo)
+///dibuja la figura en el centro
+void dibujarFiguraCarta(int posx, int posy, int palo)
 {
     rlutil::locate(posx + 5, posy + 3);
 
@@ -94,6 +97,7 @@ void dibujarPaloCarta(int posx, int posy, int palo)
     rlutil::setColor(rlutil::WHITE);
 }
 
+///convierte el char en int para el codigo ASCII
 int convertirPalo(const string &palo)
 {
     if (palo == "corazon") return 3;
@@ -103,17 +107,16 @@ int convertirPalo(const string &palo)
 
 }
 
+///reune todas las funciones anteriores y dibuja una carta
 void dibujarCarta(int posx, int posy, string valor, string palo)
 {
     dibujarEstructuraCarta(posx, posy, 12, 8);
     dibujarValorCarta(posx, posy, valor);
     int paloConvertido = convertirPalo(palo);
-    dibujarPaloCarta(posx, posy, paloConvertido);
+    dibujarFiguraCarta(posx, posy, paloConvertido);
 }
 
-
-
-
+///dibuja las 5 cartas para cada jugador y la embaucadora
 void dibujarCartasMano(string mazoValorMano[], string mazoFiguraMano[], string embaucadora, int tamMazo)
 {
     rlutil::hidecursor();
@@ -142,6 +145,7 @@ void dibujarCartasMano(string mazoValorMano[], string mazoFiguraMano[], string e
     rlutil::locate(1, 30);
 }
 
+///posiciona cada puntaje debajo de la carta correspondiente
 void mostrarPuntaje(int puntosJugadorUno[], int puntosJugadorDos[]) {
     // Mostrar puntos de las cartas del jugador 1
      rlutil::locate(3,16);
@@ -164,7 +168,7 @@ void mostrarPuntaje(int puntosJugadorUno[], int puntosJugadorDos[]) {
 }
 
 
-// Función para mostrar los resultados por ronda dentro de un recuadro
+/// Función para mostrar los resultados por ronda dentro de un recuadro
 void dibujarResultadosPorRonda(string vecJugadores[], int vecCartasJugadorUno[], int vecCartasJugadorDos[], int totalUno, int totalDos) {
     rlutil::cls();
     dibujarEncabezado("PUNTAJE");
