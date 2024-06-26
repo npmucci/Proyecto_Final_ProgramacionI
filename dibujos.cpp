@@ -158,7 +158,7 @@ void mostrarPuntaje(int puntosJugadorUno[], int puntosJugadorDos[]) {
         rlutil::locate((i + 1) * 17, 28);
         cout << puntosJugadorDos[i] << "pts";
     }
-    rlutil::locate(1, 33);
+    rlutil::locate(1, 32);
     cout << "\nPresione una tecla par continuar...";
     rlutil::anykey();
 }

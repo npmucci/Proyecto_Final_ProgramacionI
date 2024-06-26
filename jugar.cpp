@@ -8,9 +8,128 @@
 
 using namespace std;
 
+void jugar(string &nombreGanador, int &puntajeGanador, string &jugadorMejorPuntaje, int &mejorPuntaje)
+{
+    // Mazos con los que se van a jugar
+    const string VEC_VALOR[5] = {"10", "J", "Q", "K", "A"};
+    const string VEC_FIGURA[4] = {"corazon", "diamante", "picas", "trebol"};
+
+    // Tamaños de los vectores
+    const int CANT_RONDAS = 3;
+    const int CANT_JUGADORES = 2;
+    const int TAM_MAZO_MANO = 10;
+
+    //Variables del juego
+    string vecJugadores[CANT_JUGADORES];
+    string mazoValorMano[TAM_MAZO_MANO];
+    string mazoFiguraMano[TAM_MAZO_MANO];
+
+    // Variables para guardar los puntos
+    int puntosCartasJugadorUno[5] = {0, 0, 0, 0, 0}; // Vector para guardar el puntaje que suma cada una de las 5 cartas
+    int puntosCartasJugadorDos[5] = {0, 0, 0, 0, 0}; // Vector para guardar el puntaje que suma cada una de las 5 cartas
+    int puntosRondaJugadorUno[CANT_RONDAS] = {0, 0, 0}; // Vector para guardar el puntaje individual de cada ronda del jugador 1
+    int puntosRondaJugadorDos[CANT_RONDAS] = {0, 0, 0}; // Vector para guardar el puntaje individual de cada ronda del jugador 2
+    int puntosAcumuladosJugadorUno = 0; // Acumular los puntajes de cada ronda para el jugador 1
+    int puntosAcumuladosJugadorDos = 0; // Acumular los puntajes de cada ronda para el jugador 2
+
+    // Variables cambio embaucadora
+    string embaucadora;
+    bool confirmacionUno;
+    bool confirmacionDos;
+    int costo = 20;
+
+    // Pedir nombre a los juagores
+    cargarNombre(vecJugadores);
+
+    //ciclo de juego
+    for (int ronda = 1; ronda <= CANT_RONDAS; ronda++)
+    {
+        dibujarEncabezado("EMBAUCADO");
+        centrarTexto(3, "Ronda #" + to_string(ronda));
+        centrarTexto(4, vecJugadores[0] + " VS " + vecJugadores[1]);
+
+        repartirCartas(VEC_VALOR, VEC_FIGURA, mazoValorMano, mazoFiguraMano, vecJugadores, puntosCartasJugadorUno, puntosCartasJugadorDos, puntosAcumuladosJugadorUno, puntosAcumuladosJugadorDos, TAM_MAZO_MANO);
+
+        ///primera ronda se calculan los puntos de forma normal
+        if(ronda==1){
+            puntosRondaJugadorUno[ronda - 1] = sumarVector(puntosCartasJugadorUno, 5);
+            puntosRondaJugadorDos[ronda - 1] = sumarVector(puntosCartasJugadorDos,5);
+        }
+
+
+        else if (ronda == 2)
+        {
+            confirmacionUno=cambiarEmbaucadora(vecJugadores[0]);
+            if(confirmacionUno){
+            implementarCambioEmbaucadora(ronda,vecJugadores[0], puntosAcumuladosJugadorUno, VEC_FIGURA, 4, mazoValorMano, mazoFiguraMano, puntosCartasJugadorUno, puntosCartasJugadorDos, puntosRondaJugadorUno[ronda - 1], puntosRondaJugadorDos[ronda - 1], costo, confirmacionUno,confirmacionDos,31);
+            }
+           else{
+                confirmacionDos=cambiarEmbaucadora(vecJugadores[1]);
+                if(confirmacionDos){
+                implementarCambioEmbaucadora(ronda,vecJugadores[1], puntosAcumuladosJugadorDos, VEC_FIGURA, 4, mazoValorMano, mazoFiguraMano, puntosCartasJugadorDos, puntosCartasJugadorUno, puntosRondaJugadorDos[ronda - 1], puntosRondaJugadorUno[ronda - 1], costo, confirmacionUno,confirmacionDos,32);
+                }
+           }
+
+
+            if (!confirmacionUno && !confirmacionDos)
+            {
+                // Si ninguno de los jugadores cambió la carta embaucadora, calcula los puntos sin restar el costo
+                puntosRondaJugadorUno[ronda - 1] = sumarVector(puntosCartasJugadorUno, 5);
+                puntosRondaJugadorDos[ronda - 1] = sumarVector(puntosCartasJugadorDos, 5);
+                rlutil::locate(1,32);
+            }
+        }
+        else
+        {
+            confirmacionDos=cambiarEmbaucadora(vecJugadores[1]);
+            if(confirmacionDos){
+                implementarCambioEmbaucadora(ronda,vecJugadores[1], puntosAcumuladosJugadorDos, VEC_FIGURA, 4, mazoValorMano, mazoFiguraMano, puntosCartasJugadorDos, puntosCartasJugadorUno, puntosRondaJugadorDos[ronda - 1], puntosRondaJugadorUno[ronda - 1], costo,confirmacionUno,confirmacionDos,31);
+
+            }
+           else{
+                confirmacionUno=cambiarEmbaucadora(vecJugadores[0]);
+            if(confirmacionUno){
+                implementarCambioEmbaucadora(ronda,vecJugadores[0], puntosAcumuladosJugadorUno, VEC_FIGURA, 4, mazoValorMano, mazoFiguraMano, puntosCartasJugadorUno, puntosCartasJugadorDos, puntosRondaJugadorUno[ronda - 1], puntosRondaJugadorDos[ronda - 1], costo, confirmacionUno,confirmacionDos,32);
+            }
+           }
+
+
+            if (!confirmacionUno && !confirmacionDos)
+            {
+                // Si ninguno de los jugadores cambió la carta embaucadora, calcula los puntos sin restar el costo
+                puntosRondaJugadorUno[ronda - 1] = sumarVector(puntosCartasJugadorUno, 5);
+                puntosRondaJugadorDos[ronda - 1] = sumarVector(puntosCartasJugadorDos, 5);
+                rlutil::locate(1, 32);
+            }
+        }
+
+
+        puntosAcumuladosJugadorUno = sumarVector(puntosRondaJugadorUno, CANT_RONDAS);
+        puntosAcumuladosJugadorDos = sumarVector(puntosRondaJugadorDos, CANT_RONDAS);
+        rlutil::anykey("Para ver el puntaje presione una tecla ");
+        mostrarPuntaje(puntosCartasJugadorUno, puntosCartasJugadorDos);
+
+        if(ronda==1 || ronda==2){
+        dibujarResultadosPorRonda(vecJugadores, puntosRondaJugadorUno, puntosRondaJugadorDos, puntosAcumuladosJugadorUno, puntosAcumuladosJugadorDos);
+        }
+
+
+        rlutil::anykey();
+        rlutil::cls();
+    }
+
+    determinarGanador(puntosRondaJugadorUno, puntosRondaJugadorDos, puntosAcumuladosJugadorUno, puntosAcumuladosJugadorDos, vecJugadores, nombreGanador, puntajeGanador);
+    dibujarResultadosPorRonda(vecJugadores, puntosRondaJugadorUno, puntosRondaJugadorDos, puntosAcumuladosJugadorUno, puntosAcumuladosJugadorDos);
+    rlutil::msleep(500);
+    dibujarGanador(nombreGanador, puntajeGanador);
+    actualizarEstadistica(nombreGanador, puntajeGanador, jugadorMejorPuntaje, mejorPuntaje);
+    rlutil::anykey("Presione una tecla para volver al menu");
+}
+
 void cargarNombre(string vecJugadores[])
 {
-    char confirmacion;
+    char respuesta;
+    bool confirmar;
 
     do
     {
@@ -27,22 +146,11 @@ void cargarNombre(string vecJugadores[])
         cout << "Confirmar Nombres? (S/N) " << endl;
         cout << endl << endl << "-------------------------------------------------" << endl;
         rlutil::locate(27,8);
-        cin >> confirmacion;
-        confirmacion=toupper(confirmacion);///para contemplar mayusculas y minusculas uso toupper
-
-
-
-
-        while(confirmacion != 'S' && confirmacion != 'N')
+        cin >> respuesta;
+        confirmar = manejarRespuesta(respuesta,1,9);
+        if(!confirmar)
         {
-            cout << "ERROR solo se admite 'S' o 'N'" << endl;
-            cout << "\nConfirmar nombres (S/N): ";
-            cin >> confirmacion;
-            confirmacion=toupper(confirmacion);//funcion toupper me transforma el ingreso a mayuscula
 
-        }
-        if(confirmacion == 'N')
-        {
             cout << "Ingrese los nombres nuevamente\n";
             system("pause");
             system("cls");
@@ -51,10 +159,25 @@ void cargarNombre(string vecJugadores[])
         system("cls");
 
     }
-    while(confirmacion != 's' && confirmacion != 'S'); //para contemplar mayusculas y minusculas
+    while(!confirmar); //para contemplar mayusculas y minusculas
 
 }
+///funcion generica para todas la preguntas de si y no
+bool manejarRespuesta(char respuesta, int posx,int posy){
+     while (toupper(respuesta) != 'S' && toupper(respuesta) != 'N')
+    {
+        rlutil::locate(posx,posy);
+        cout << "Opcion invalida. Por favor ingrese 's' para Si o 'n' para No: ";
+        cin >> respuesta;
+    }
+  if(toupper(respuesta) == 'S'){
+    return true;
+  }
+  else{
+    return false;
+  }
 
+}
 //con esta funcion en cada mano, lleno el mazo con 10 cartas
 void cargarMazoMano(const string vecValor[], const string vecFigura[], string mazoValorMano[], string mazoFiguraMano[], int tamMazoMano, int tamVecValor, int tamVecFigura)
 {
@@ -251,184 +374,53 @@ void desempatar(int vecRondaJugadorUno[], int vecRondaJugadorDos[], int puntosTo
 
 }
 
-void jugar(string &nombreGanador, int &puntajeGanador, string &jugadorMejorPuntaje, int &mejorPuntaje)
-{
-    //mazos con los que se van a jugar
-    const string VEC_VALOR[5] = {"10", "J", "Q", "K", "A"};
-    const string VEC_FIGURA[4] = {"corazon", "diamante", "picas", "trebol"};
-
-    //tamaños de los vectores
-    const int CANT_RONDAS = 3;
-    const int CANT_JUGADORES = 2;
-    const int TAM_MAZO_MANO = 10;
-
-    // creo el vector vacio para despues guardar los nombres
-    string vecJugadores[CANT_JUGADORES];
-
-    //se crean los vectores que se van a usar en cada mano
-    string mazoValorMano[TAM_MAZO_MANO]; // se crean el mazo de palos
-    string mazoFiguraMano[TAM_MAZO_MANO]; // se crea el mazo de figuras
-
-    //variables para guardar los puntos
-    int puntosCartasJugadorUno[5] = {0, 0, 0, 0, 0}; // vector para guardar el puntaje que suma cada una de las 5 cartas
-    int puntosCartasJugadorDos[5] = {0, 0, 0, 0, 0}; // vector para guardar el puntaje que suma cada una de las 5 cartas
-    int puntosRondaJugadorUno[CANT_RONDAS] = {0, 0, 0}; // vector para guardar el puntaje individual de cada ronda jug 1
-    int puntosRondaJugadorDos[CANT_RONDAS] = {0, 0, 0}; // vector para guardar el puntaje individual de cada ronda jug 1
-    int puntosAcumuladosJugadorUno = 0; // acumular los puntajes de cada ronda para el jugador 1
-    int puntosAcumuladosJugadorDos = 0; // acumular los puntajes de cada ronda para el jugador 2
-
-    //variables para las rondas 2 y 3
+bool cambiarEmbaucadora(string jugador){
     char respuesta;
-    string nuevaEmbacaudora;
+    bool confirmacion;
+    cout << jugador << " queres cambiar la carta embaucadora (te va a costar 20 puntos)? (s/n): ";
+    cin >> respuesta;
+    confirmacion=manejarRespuesta(respuesta,1,32);
+}
 
-    //implementacion del juego 1° pido los nombres
-    cargarNombre(vecJugadores);
+void implementarCambioEmbaucadora(int ronda,string jugador, int &puntosAcumulados, const string VEC_FIGURA[], int tamFigura, string mazoValorMano[], string mazoFiguraMano[],int puntosCartasJugador[], int puntosCartasOponente[], int &puntosRondaJugador, int &puntosRondaOponente, int costo, bool confirmacionUno, bool confirmacionDos, int posz)
+{
+    string nuevaEmbaucadora;
+    int posy;
 
-    //2° se utiliza un ciclo for para implementar la logica de cada una de las rondas
-    for (int ronda = 1; ronda <= CANT_RONDAS; ronda++)
+if((ronda == 2 && confirmacionUno) || (ronda == 3 && confirmacionUno))
     {
-        dibujarEncabezado("EMBAUCADO");
-        centrarTexto(3, "Ronda #" + to_string(ronda));
-        centrarTexto(4, vecJugadores[0] + " VS " + vecJugadores[1]);
-        string embaucadora;
+        posy = 6;
 
-        // Funcionalidad específica para cada ronda
-        switch (ronda)
-        {
-            //primera ronda, solo se reparten las cartas y se muestran los puntos
-            case 1:
-                repartirCartas(VEC_VALOR, VEC_FIGURA, mazoValorMano, mazoFiguraMano, vecJugadores, puntosCartasJugadorUno, puntosCartasJugadorDos, puntosAcumuladosJugadorUno, puntosAcumuladosJugadorDos, TAM_MAZO_MANO);
-                rlutil::anykey("Para ver el puntaje presione una tecla ");
-                mostrarPuntaje(puntosCartasJugadorUno, puntosCartasJugadorDos);
-                cout << endl;
-                puntosRondaJugadorUno[ronda - 1] = sumarVector(puntosCartasJugadorUno, 5);
-                puntosRondaJugadorDos[ronda - 1] = sumarVector(puntosCartasJugadorDos, 5);
-                puntosAcumuladosJugadorUno = sumarVector(puntosRondaJugadorUno, 3);
-                puntosAcumuladosJugadorDos = sumarVector(puntosRondaJugadorDos, 3);
-                dibujarResultadosPorRonda(vecJugadores, puntosRondaJugadorUno, puntosRondaJugadorDos, puntosAcumuladosJugadorUno, puntosAcumuladosJugadorDos);
-                break;
-
-            //antes de mostrar los puntos se pregunta al jugador 1 si quiere cambiar la carta embaucadora
-            case 2:
-                repartirCartas(VEC_VALOR, VEC_FIGURA, mazoValorMano, mazoFiguraMano, vecJugadores, puntosCartasJugadorUno, puntosCartasJugadorDos, puntosAcumuladosJugadorUno, puntosAcumuladosJugadorDos, TAM_MAZO_MANO);
-                cout << vecJugadores[0] << " queres cambiar la carta embaucadora (te va a costar 20 puntos)? (s/n): ";
-                cin >> respuesta;
-                while (toupper(respuesta) != 'S' && toupper(respuesta) != 'N')
-                {
-                    rlutil::locate(1, 31);
-                    cout << "Opcion invalida. Por favor ingrese 's' para Si o 'n' para No: ";
-                    cin >> respuesta;
-                }
-                if (toupper(respuesta) == 'S')
-                {
-                    if(puntosAcumuladosJugadorUno>=20){
-                    nuevaEmbacaudora = determinarCartaEmbaucadora(VEC_FIGURA, 4);
-                    dibujarCarta(100, 14, " ", nuevaEmbacaudora);
-                    puntosAcumuladosJugadorUno -= 20;
-                    rlutil::locate(1, 6);
-                    cout << "  Mazo de " << vecJugadores[0] << " (" << puntosAcumuladosJugadorUno << " puntos)";
-                    calcularPuntosCartas(puntosCartasJugadorUno, puntosCartasJugadorDos, mazoValorMano, mazoFiguraMano, nuevaEmbacaudora);
-                    puntosRondaJugadorUno[ronda - 1] = sumarVector(puntosCartasJugadorUno, 5) - 20; // le resto al jugador 1 los 20 puntos de la embaucadora
-                    puntosRondaJugadorDos[ronda - 1] = sumarVector(puntosCartasJugadorDos, 5);
-                    rlutil::locate(1, 32);
-                    }
-                    else{
-                        cout << "No tienes suficientes puntos para cambiar la carta embaucadora." << endl;
-                    }
-                }
-
-
-                else
-                {
-                    cout << vecJugadores[1] << " queres cambiar la carta embaucadora (te va a costar 20 puntos)? (s/n): ";
-                    cin >> respuesta;
-                    if (respuesta == 's' || respuesta == 'S')
-                    {
-                        nuevaEmbacaudora = determinarCartaEmbaucadora(VEC_FIGURA, 4);
-                        dibujarCarta(100, 14, " ", nuevaEmbacaudora);
-                        puntosAcumuladosJugadorDos -= 20;
-                        rlutil::locate(1, 18);
-                        cout << "  Mazo de " << vecJugadores[1] << " (" << puntosAcumuladosJugadorDos << " puntos)";
-                        calcularPuntosCartas(puntosCartasJugadorUno, puntosCartasJugadorDos, mazoValorMano, mazoFiguraMano, nuevaEmbacaudora);
-                    puntosRondaJugadorUno[ronda - 1] = sumarVector(puntosCartasJugadorUno, 5);
-                    puntosRondaJugadorDos[ronda - 1] = (sumarVector(puntosCartasJugadorDos, 5) - 20); // le resto al jugador 2 los 20 puntos de la embaucadora
-                    rlutil::locate(1, 32);
-
-                    }
-                    else{
-                    puntosRondaJugadorUno[ronda - 1] = sumarVector(puntosCartasJugadorUno, 5);
-                    puntosRondaJugadorDos[ronda - 1] = sumarVector(puntosCartasJugadorDos, 5);
-                    rlutil::locate(1, 32);
-                    }
-                }
-                rlutil::anykey("Para ver el puntaje presione una tecla ");
-                mostrarPuntaje(puntosCartasJugadorUno, puntosCartasJugadorDos);
-                puntosAcumuladosJugadorUno = sumarVector(puntosRondaJugadorUno, 3);
-                puntosAcumuladosJugadorDos = sumarVector(puntosRondaJugadorDos, 3);
-                dibujarResultadosPorRonda(vecJugadores, puntosRondaJugadorUno, puntosRondaJugadorDos, puntosAcumuladosJugadorUno, puntosAcumuladosJugadorDos);
-                break;
-
-            case 3:
-                repartirCartas(VEC_VALOR, VEC_FIGURA, mazoValorMano, mazoFiguraMano, vecJugadores, puntosCartasJugadorUno, puntosCartasJugadorDos, puntosAcumuladosJugadorUno, puntosAcumuladosJugadorDos, TAM_MAZO_MANO);
-                cout << vecJugadores[1] << " Queres cambiar la carta embaucadora (te va a costar 20 puntos)? (s/n): ";
-                cin >> respuesta;
-                while (toupper(respuesta) != 'S' && toupper(respuesta) != 'N')
-                {
-                    rlutil::locate(1, 31);
-                    cout << "Opcion invalida. Por favor ingrese 's' para Si o 'n' para No: ";
-                    cin >> respuesta;
-                }
-                if (respuesta == 's' || respuesta == 'S')
-                {
-                    nuevaEmbacaudora = determinarCartaEmbaucadora(VEC_FIGURA, 4);
-                    dibujarCarta(100, 14, " ", nuevaEmbacaudora);
-                    puntosAcumuladosJugadorDos -= 20;
-                    rlutil::locate(1, 18);
-                    cout << "  Mazo de " << vecJugadores[1] << " (" << puntosAcumuladosJugadorDos << " puntos)";
-                    calcularPuntosCartas(puntosCartasJugadorUno, puntosCartasJugadorDos, mazoValorMano, mazoFiguraMano, nuevaEmbacaudora);
-                    puntosRondaJugadorUno[ronda - 1] = sumarVector(puntosCartasJugadorUno, 5);
-                    puntosRondaJugadorDos[ronda - 1] = sumarVector(puntosCartasJugadorDos, 5)-20;
-                     rlutil::locate(1, 32);
-                }
-                else
-                {
-                    cout << vecJugadores[0] << " Queres cambiar la carta embaucadora (te va a csotar 20 puntos)? (s/n): ";
-                    cin >> respuesta;
-                    if (respuesta == 's' || respuesta == 'S')
-                    {
-                        nuevaEmbacaudora = determinarCartaEmbaucadora(VEC_FIGURA, 4);
-                        dibujarCarta(100, 14, " ", nuevaEmbacaudora);
-                        puntosAcumuladosJugadorUno -= 20;
-                        rlutil::locate(1, 6);
-                        cout << "  Mazo de " << vecJugadores[0] << " (" << puntosAcumuladosJugadorUno << " puntos)";
-                        calcularPuntosCartas(puntosCartasJugadorUno, puntosCartasJugadorDos, mazoValorMano, mazoFiguraMano, nuevaEmbacaudora);
-                        puntosRondaJugadorUno[ronda - 1] = sumarVector(puntosCartasJugadorUno, 5)-20;
-                        puntosRondaJugadorDos[ronda - 1] = sumarVector(puntosCartasJugadorDos, 5);
-                         rlutil::locate(1, 32);
-                    }
-                    else{
-                        puntosRondaJugadorUno[ronda - 1] = sumarVector(puntosCartasJugadorUno, 5);
-                        puntosRondaJugadorDos[ronda - 1] = sumarVector(puntosCartasJugadorDos, 5);
-                        rlutil::locate(1, 32);
-                    }
-                }
-                rlutil::anykey("Para ver el puntaje presione una tecla ");
-                mostrarPuntaje(puntosCartasJugadorUno, puntosCartasJugadorDos);
-                puntosAcumuladosJugadorUno = sumarVector(puntosRondaJugadorUno, 3);
-                puntosAcumuladosJugadorDos = sumarVector(puntosRondaJugadorDos, 3);
-
-                break;
-        }
-        rlutil::anykey();
-        rlutil::cls();
     }
-    determinarGanador(puntosRondaJugadorUno,puntosRondaJugadorDos,puntosAcumuladosJugadorUno,puntosAcumuladosJugadorDos,vecJugadores,nombreGanador,puntajeGanador);
-     dibujarResultadosPorRonda(vecJugadores, puntosRondaJugadorUno, puntosRondaJugadorDos, puntosAcumuladosJugadorUno, puntosAcumuladosJugadorDos);
-    rlutil::msleep(500);
-    dibujarGanador(nombreGanador,puntajeGanador);
-    actualizarEstadistica(nombreGanador,puntajeGanador, jugadorMejorPuntaje,mejorPuntaje);
-    rlutil::anykey("Presione una tecla para volver al menu");
+    else
+    {
+        posy = 18;
+    }
+
+
+        if(puntosAcumulados >= costo)
+        {
+
+            nuevaEmbaucadora = determinarCartaEmbaucadora(VEC_FIGURA, tamFigura);
+            dibujarCarta(100, 14, " ", nuevaEmbaucadora);
+            puntosAcumulados -= costo;
+            rlutil::locate(1, posy);
+            cout << "  Mazo de " << jugador << " (" << puntosAcumulados << " puntos)";
+            calcularPuntosCartas(puntosCartasJugador, puntosCartasOponente, mazoValorMano, mazoFiguraMano, nuevaEmbaucadora);
+            puntosRondaJugador = sumarVector(puntosCartasJugador, 5) - costo;
+            puntosRondaOponente = sumarVector(puntosCartasOponente, 5);
+            rlutil::locate(1,posz);
+
+        }
+        else
+        {
+            cout << "No tienes suficientes puntos para cambiar la carta embaucadora." << endl;
+        }
 
 }
+
+
+
+
 
 

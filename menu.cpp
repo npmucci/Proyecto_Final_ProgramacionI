@@ -64,9 +64,9 @@ void implementarOpcion(int op, string &nombreGanador, int &puntajeGanador,string
       break;
     case 0:
            dibujarEncabezado("EMBAUCADO");
-      cout << "REALMENTE QUERES SALIR DEL JUEGO (S/N)?" << endl;
+      cout << "REALMENTE QUERES SALIR DEL JUEGO (S/N)?";
       cin >> respuesta;
-      if( toupper(respuesta)=='S'){
+      if( manejarRespuesta(respuesta, 1,5)){
         rlutil::cls();
         dibujarEncabezado("EMBAUCADO");
         rlutil::setColor(rlutil::LIGHTRED);
