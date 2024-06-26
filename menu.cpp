@@ -30,6 +30,12 @@ void desplegarMenu(){
     cout << "0 - SALIR" << endl;
     cout << "Ingrese su opcion: ";
     cin >> opcion;
+    // Verificar si la entrada no es válida
+        if (cin.fail()) {
+            cin.clear(); // Limpiar el error
+            cin.ignore(50, '\n'); // Ignorar la entrada incorrecta
+            opcion = 4; // Asignar una opción inválida para manejarla en el default
+        }
 
     implementarOpcion(opcion, jugadorGanador,puntajeGanador,jugadorMayorPuntaje,puntajeMayor);
 
@@ -37,7 +43,7 @@ void desplegarMenu(){
 }
 
 void implementarOpcion(int op, string &nombreGanador, int &puntajeGanador,string &nombreMayorPuntaje, int &puntajeMayor){
-
+    char respuesta;
   system("cls");
 
   switch(op)
@@ -57,13 +63,28 @@ void implementarOpcion(int op, string &nombreGanador, int &puntajeGanador,string
 
       break;
     case 0:
-      cout << "-------------------------" << endl;
-      cout << "SALIENDO DEL JUEGO. GRACIAS POR JUGAR EMBAUCADO" << endl;
+           dibujarEncabezado("EMBAUCADO");
+      cout << "REALMENTE QUERES SALIR DEL JUEGO (S/N)?" << endl;
+      cin >> respuesta;
+      if( toupper(respuesta)=='S'){
+        rlutil::cls();
+        dibujarEncabezado("EMBAUCADO");
+        rlutil::setColor(rlutil::LIGHTRED);
+        centrarTexto(5, "SALIENDO DEL JUEGO. GRACIAS POR JUGAR EMBAUCADO");
+       rlutil::setColor(rlutil::WHITE);
+       rlutil::locate(20,8);
+      }
+      else{
+        desplegarMenu();
+      }
+
       break;
 
     default:
-      cout << "ERROR: " << op << " No es un numero valido." << endl;
+      cout << "ERROR: opcion no  valida." << endl;
+      rlutil::anykey("Presione una tecla para volver al menu principal....");
       break;
+
 
   }
 

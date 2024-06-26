@@ -139,7 +139,7 @@ void dibujarCartasMano(string mazoValorMano[], string mazoFiguraMano[], string e
 
     dibujarCarta(100,14," ",embaucadora);
 
-    rlutil::locate(1, 29);
+    rlutil::locate(1, 30);
 }
 
 void mostrarPuntaje(int puntosJugadorUno[], int puntosJugadorDos[]) {
@@ -158,7 +158,7 @@ void mostrarPuntaje(int puntosJugadorUno[], int puntosJugadorDos[]) {
         rlutil::locate((i + 1) * 17, 28);
         cout << puntosJugadorDos[i] << "pts";
     }
-    rlutil::locate(1, 31);
+    rlutil::locate(1, 33);
     cout << "\nPresione una tecla par continuar...";
     rlutil::anykey();
 }
@@ -205,7 +205,7 @@ void dibujarResultadosPorRonda(string vecJugadores[], int vecCartasJugadorUno[],
     rlutil::locate(x + 2, y + 7);
     cout << "TOTAL" << "               " << totalUno << "                     " << totalDos;
     rlutil::locate(40, 18);
-      rlutil::anykey("Presiona una tecla para continuar...");
+
 }
 
 
@@ -213,7 +213,7 @@ void dibujarGanador (string nombreGanador, int puntajeGanador){
     rlutil::locate(43,16);
     rlutil::setBackgroundColor(rlutil::WHITE);
     rlutil::setColor(rlutil::BLACK);
-    cout << "  GANADOR: " << nombreGanador << " con " << puntajeGanador  << " puntos.  ";
+    cout << "  GANADOR: " << nombreGanador << " con " << puntajeGanador  << " puntos  ";
 
     rlutil::setBackgroundColor(rlutil::BLACK);
     rlutil::setColor(rlutil::WHITE);

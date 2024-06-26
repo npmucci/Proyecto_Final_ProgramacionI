@@ -17,11 +17,12 @@ void actualizarEstadistica(string &nombreGanador, int &puntajeGanador, string &m
 
 // Función para mostrar las estadísticas en la consola
 void mostrarEstadistica(string mejorJugador, int mejorPuntaje) {
+
     dibujarEncabezado("EMBAUCADO");
     rlutil::cls();
 
     int ancho = 50;
-    int alto = 10;
+    int alto = 11;
     int x = (rlutil::tcols() - ancho) / 2;
     int y = 5;
 
@@ -38,8 +39,12 @@ void mostrarEstadistica(string mejorJugador, int mejorPuntaje) {
     // Mostrar información del jugador con mayor puntaje o mensaje de no hay estadísticas
     rlutil::setColor(rlutil::WHITE);
         centrarTexto(y + 4, "JUGADOR CON MAYOR PUNTAJE");
-        centrarTexto(y + 6, " Nombre : " + mejorJugador);
-        centrarTexto(y + 7, " Puntos : " + to_string(mejorPuntaje));
+        rlutil::locate(50,11);
+        cout << "Nombre : " << mejorJugador;
+        rlutil::locate(50,13);
+        cout << "Puntos : " << mejorPuntaje;
+
+
 
 
     rlutil::locate(35, 17);
