@@ -207,7 +207,7 @@ void dibujarResultadosPorRonda(string vecJugadores[], int vecCartasJugadorUno[],
     cout << "----------------------------------------------------------";
 
     rlutil::locate(x + 2, y + 7);
-    cout << "TOTAL" << "               " << totalUno << "                     " << totalDos;
+    cout << "TOTAL" << "              " << totalUno << "                    " << totalDos;
     rlutil::locate(40, 18);
 
 }

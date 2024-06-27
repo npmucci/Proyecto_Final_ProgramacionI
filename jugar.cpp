@@ -51,7 +51,8 @@ void jugar(string &nombreGanador, int &puntajeGanador, string &jugadorMejorPunta
         repartirCartas(VEC_VALOR, VEC_FIGURA, mazoValorMano, mazoFiguraMano, vecJugadores, puntosCartasJugadorUno, puntosCartasJugadorDos, puntosAcumuladosJugadorUno, puntosAcumuladosJugadorDos, TAM_MAZO_MANO);
 
         ///primera ronda se calculan los puntos de forma normal
-        if(ronda==1){
+        if(ronda==1)
+        {
             puntosRondaJugadorUno[ronda - 1] = sumarVector(puntosCartasJugadorUno, 5);
             puntosRondaJugadorDos[ronda - 1] = sumarVector(puntosCartasJugadorDos,5);
         }
@@ -60,15 +61,18 @@ void jugar(string &nombreGanador, int &puntajeGanador, string &jugadorMejorPunta
         else if (ronda == 2)
         {
             confirmacionUno=cambiarEmbaucadora(vecJugadores[0]);
-            if(confirmacionUno){
-            implementarCambioEmbaucadora(ronda,vecJugadores[0], puntosAcumuladosJugadorUno, VEC_FIGURA, 4, mazoValorMano, mazoFiguraMano, puntosCartasJugadorUno, puntosCartasJugadorDos, puntosRondaJugadorUno[ronda - 1], puntosRondaJugadorDos[ronda - 1], costo, confirmacionUno,confirmacionDos,31);
+            if(confirmacionUno)
+            {
+                implementarCambioEmbaucadora(ronda,vecJugadores[0], puntosAcumuladosJugadorUno, VEC_FIGURA, 4, mazoValorMano, mazoFiguraMano, puntosCartasJugadorUno, puntosCartasJugadorDos, puntosRondaJugadorUno[ronda - 1], puntosRondaJugadorDos[ronda - 1], costo, confirmacionUno,confirmacionDos,31);
             }
-           else{
+            else
+            {
                 confirmacionDos=cambiarEmbaucadora(vecJugadores[1]);
-                if(confirmacionDos){
-                implementarCambioEmbaucadora(ronda,vecJugadores[1], puntosAcumuladosJugadorDos, VEC_FIGURA, 4, mazoValorMano, mazoFiguraMano, puntosCartasJugadorDos, puntosCartasJugadorUno, puntosRondaJugadorDos[ronda - 1], puntosRondaJugadorUno[ronda - 1], costo, confirmacionUno,confirmacionDos,32);
+                if(confirmacionDos)
+                {
+                    implementarCambioEmbaucadora(ronda,vecJugadores[1], puntosAcumuladosJugadorDos, VEC_FIGURA, 4, mazoValorMano, mazoFiguraMano, puntosCartasJugadorDos, puntosCartasJugadorUno, puntosRondaJugadorDos[ronda - 1], puntosRondaJugadorUno[ronda - 1], costo, confirmacionUno,confirmacionDos,32);
                 }
-           }
+            }
 
 
             if (!confirmacionUno && !confirmacionDos)
@@ -82,16 +86,19 @@ void jugar(string &nombreGanador, int &puntajeGanador, string &jugadorMejorPunta
         else
         {
             confirmacionDos=cambiarEmbaucadora(vecJugadores[1]);
-            if(confirmacionDos){
+            if(confirmacionDos)
+            {
                 implementarCambioEmbaucadora(ronda,vecJugadores[1], puntosAcumuladosJugadorDos, VEC_FIGURA, 4, mazoValorMano, mazoFiguraMano, puntosCartasJugadorDos, puntosCartasJugadorUno, puntosRondaJugadorDos[ronda - 1], puntosRondaJugadorUno[ronda - 1], costo,confirmacionUno,confirmacionDos,31);
 
             }
-           else{
+            else
+            {
                 confirmacionUno=cambiarEmbaucadora(vecJugadores[0]);
-            if(confirmacionUno){
-                implementarCambioEmbaucadora(ronda,vecJugadores[0], puntosAcumuladosJugadorUno, VEC_FIGURA, 4, mazoValorMano, mazoFiguraMano, puntosCartasJugadorUno, puntosCartasJugadorDos, puntosRondaJugadorUno[ronda - 1], puntosRondaJugadorDos[ronda - 1], costo, confirmacionUno,confirmacionDos,32);
+                if(confirmacionUno)
+                {
+                    implementarCambioEmbaucadora(ronda,vecJugadores[0], puntosAcumuladosJugadorUno, VEC_FIGURA, 4, mazoValorMano, mazoFiguraMano, puntosCartasJugadorUno, puntosCartasJugadorDos, puntosRondaJugadorUno[ronda - 1], puntosRondaJugadorDos[ronda - 1], costo, confirmacionUno,confirmacionDos,32);
+                }
             }
-           }
 
 
             if (!confirmacionUno && !confirmacionDos)
@@ -109,8 +116,9 @@ void jugar(string &nombreGanador, int &puntajeGanador, string &jugadorMejorPunta
         rlutil::anykey("Para ver el puntaje presione una tecla ");
         mostrarPuntaje(puntosCartasJugadorUno, puntosCartasJugadorDos);
 
-        if(ronda==1 || ronda==2){
-        dibujarResultadosPorRonda(vecJugadores, puntosRondaJugadorUno, puntosRondaJugadorDos, puntosAcumuladosJugadorUno, puntosAcumuladosJugadorDos);
+        if(ronda==1 || ronda==2)
+        {
+            dibujarResultadosPorRonda(vecJugadores, puntosRondaJugadorUno, puntosRondaJugadorDos, puntosAcumuladosJugadorUno, puntosAcumuladosJugadorDos);
         }
 
 
@@ -163,19 +171,22 @@ void cargarNombre(string vecJugadores[])
 
 }
 ///funcion generica para todas la preguntas de si y no
-bool manejarRespuesta(char respuesta, int posx,int posy){
-     while (toupper(respuesta) != 'S' && toupper(respuesta) != 'N')
+bool manejarRespuesta(char respuesta, int posx,int posy)
+{
+    while (toupper(respuesta) != 'S' && toupper(respuesta) != 'N')
     {
         rlutil::locate(posx,posy);
         cout << "Opcion invalida. Por favor ingrese 's' para Si o 'n' para No: ";
         cin >> respuesta;
     }
-  if(toupper(respuesta) == 'S'){
-    return true;
-  }
-  else{
-    return false;
-  }
+    if(toupper(respuesta) == 'S')
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 
 }
 //con esta funcion en cada mano, lleno el mazo con 10 cartas
@@ -272,7 +283,7 @@ void calcularPuntosCartas(int puntosJugadorUno[], int puntosJugadorDos[], string
             }
             else if (vecValor[i] == "K")
             {
-                puntosJugadorUno[i] = 13;
+                puntosJugadorUno[i] = 15;
             }
             else
             {
@@ -305,7 +316,7 @@ void calcularPuntosCartas(int puntosJugadorUno[], int puntosJugadorDos[], string
             }
             else if (vecValor[i] == "K")
             {
-                puntosJugadorDos[j] = 13;
+                puntosJugadorDos[j] = 15;
             }
             else
             {
@@ -332,7 +343,8 @@ int sumarVector(int vecPuntos[], int tamanio)
 
 
 
-bool cambiarEmbaucadora(string jugador){
+bool cambiarEmbaucadora(string jugador)
+{
     char respuesta;
     bool confirmacion;
     cout << jugador << " queres cambiar la carta embaucadora (te va a costar 20 puntos)? (s/n): ";
@@ -340,78 +352,88 @@ bool cambiarEmbaucadora(string jugador){
     confirmacion=manejarRespuesta(respuesta,1,32);
 }
 
-void implementarCambioEmbaucadora(int ronda,string jugador, int &puntosAcumulados, const string VEC_FIGURA[], int tamFigura, string mazoValorMano[], string mazoFiguraMano[],int puntosCartasJugador[], int puntosCartasOponente[], int &puntosRondaJugador, int &puntosRondaOponente, int costo, bool confirmacionUno, bool confirmacionDos, int posz)
+void implementarCambioEmbaucadora(int ronda,string jugador, int &puntosAcumulados, const string VEC_FIGURA[], int tamFigura, string mazoValorMano[], string mazoFiguraMano[],int puntosCartasJugador[], int puntosCartasOponente[], int &puntosRondaJugador, int &puntosRondaOponente, int costo, bool &confirmacionUno, bool &confirmacionDos, int posz)
 {
     string nuevaEmbaucadora;
-    int posy;
 
-if((ronda == 2 && confirmacionUno) || (ronda == 3 && confirmacionUno))
+    if(puntosAcumulados >= costo)
     {
-        posy = 6;
+        nuevaEmbaucadora = determinarCartaEmbaucadora(VEC_FIGURA, tamFigura);
+        dibujarCarta(100, 14, " ", nuevaEmbaucadora);
+        puntosAcumulados -= costo;
+        if((ronda == 2 && confirmacionUno) || (ronda == 3 && confirmacionUno))
+        {
+            rlutil::locate(1, 6);
+            cout << "  Mazo de " << jugador << " (" << puntosAcumulados << " puntos)";
+            calcularPuntosCartas(puntosCartasJugador, puntosCartasOponente, mazoValorMano, mazoFiguraMano, nuevaEmbaucadora);
+        }
+        else  if((ronda == 2 && confirmacionDos) || (ronda == 3 && confirmacionDos))
+        {
+
+            rlutil::locate(1, 18);
+            cout << "  Mazo de " << jugador << " (" << puntosAcumulados << " puntos)";
+            calcularPuntosCartas(puntosCartasOponente, puntosCartasJugador, mazoValorMano, mazoFiguraMano, nuevaEmbaucadora);
+        }
+        puntosRondaJugador = sumarVector(puntosCartasJugador, 5) - costo;
+        puntosRondaOponente = sumarVector(puntosCartasOponente, 5);
+        rlutil::locate(1,posz);
+    }
+    else
+    {
+        cout << "No tienes suficientes puntos para cambiar la carta embaucadora." << endl;
+    }
+}
+
+/// de acuerdo a los puntajes se determina el ganador
+void determinarGanador(int vecRondaJugadorUno[], int vecRondaJugadorDos[], int puntosTotalesJugadorUno, int puntosTotalesJugadorDos, string vecJugadores[], string &jugadorMayorPuntaje, int &mayorPuntaje)
+{
+
+    if(puntosTotalesJugadorUno>puntosTotalesJugadorDos)
+    {
+        jugadorMayorPuntaje=vecJugadores[0];
+        mayorPuntaje=puntosTotalesJugadorUno;
+    }
+    else if (puntosTotalesJugadorUno<puntosTotalesJugadorDos)
+    {
+        jugadorMayorPuntaje=vecJugadores[1];
+        mayorPuntaje=puntosTotalesJugadorDos;
 
     }
     else
     {
-        posy = 18;
+        desempatar(vecRondaJugadorUno,vecRondaJugadorDos,puntosTotalesJugadorUno,puntosTotalesJugadorDos,vecJugadores,jugadorMayorPuntaje,mayorPuntaje);
     }
-
-        if(puntosAcumulados >= costo)
-        {
-            nuevaEmbaucadora = determinarCartaEmbaucadora(VEC_FIGURA, tamFigura);
-            dibujarCarta(100, 14, " ", nuevaEmbaucadora);
-            puntosAcumulados -= costo;
-            rlutil::locate(1, posy);
-            cout << "  Mazo de " << jugador << " (" << puntosAcumulados << " puntos)";
-            calcularPuntosCartas(puntosCartasJugador, puntosCartasOponente, mazoValorMano, mazoFiguraMano, nuevaEmbaucadora);
-            puntosRondaJugador = sumarVector(puntosCartasJugador, 5) - costo;
-            puntosRondaOponente = sumarVector(puntosCartasOponente, 5);
-            rlutil::locate(1,posz);
-        }
-        else
-        {
-            cout << "No tienes suficientes puntos para cambiar la carta embaucadora." << endl;
-        }
-}
-
-/// de acuerdo a los puntajes se determina el ganador
-void determinarGanador(int vecRondaJugadorUno[], int vecRondaJugadorDos[], int puntosTotalesJugadorUno, int puntosTotalesJugadorDos, string vecJugadores[], string &jugadorMayorPuntaje, int &mayorPuntaje){
-
-  if(puntosTotalesJugadorUno>puntosTotalesJugadorDos){
-    jugadorMayorPuntaje=vecJugadores[0];
-    mayorPuntaje=puntosTotalesJugadorUno;
-  }
-  else if (puntosTotalesJugadorUno<puntosTotalesJugadorDos){
-        jugadorMayorPuntaje=vecJugadores[1];
-        mayorPuntaje=puntosTotalesJugadorDos;
-
-  }
-  else{
-    desempatar(vecRondaJugadorUno,vecRondaJugadorDos,puntosTotalesJugadorUno,puntosTotalesJugadorDos,vecJugadores,jugadorMayorPuntaje,mayorPuntaje);
-  }
 }
 
 /// en caso de empate, gana el jugador que tuvo mas puntos en una ronda
-void desempatar(int vecRondaJugadorUno[], int vecRondaJugadorDos[], int puntosTotalesJugadorUno, int puntosTotalesJugadorDos, string vecJugadores[], string &jugadorMayorPuntaje, int &mayorPuntaje){
- int mejorRondaJugadorUno=0, mejorRondaJugadorDos =0;
+void desempatar(int vecRondaJugadorUno[], int vecRondaJugadorDos[], int puntosTotalesJugadorUno, int puntosTotalesJugadorDos, string vecJugadores[], string &jugadorMayorPuntaje, int &mayorPuntaje)
+{
+    int mejorRondaJugadorUno=0, mejorRondaJugadorDos =0;
 
- for (int i =0 ; i<3; i++){
-    if(vecRondaJugadorUno[i]>mejorRondaJugadorUno){
-        mejorRondaJugadorUno=vecRondaJugadorUno[i];
+    for (int i =0 ; i<3; i++)
+    {
+        if(vecRondaJugadorUno[i]>mejorRondaJugadorUno)
+        {
+            mejorRondaJugadorUno=vecRondaJugadorUno[i];
+        }
+        if(vecRondaJugadorDos[i]>mejorRondaJugadorDos)
+        {
+            mejorRondaJugadorDos=vecRondaJugadorDos[i];
+        }
     }
-    if(vecRondaJugadorDos[i]>mejorRondaJugadorDos){
-        mejorRondaJugadorDos=vecRondaJugadorDos[i];
-    }
- }
 
-    if(mejorRondaJugadorUno>mejorRondaJugadorDos){
+    if(mejorRondaJugadorUno>mejorRondaJugadorDos)
+    {
         jugadorMayorPuntaje=vecJugadores[0];
         mayorPuntaje=puntosTotalesJugadorUno;
     }
-    else if(mejorRondaJugadorUno<mejorRondaJugadorDos){
+    else if(mejorRondaJugadorUno<mejorRondaJugadorDos)
+    {
         jugadorMayorPuntaje=vecJugadores[1];
         mayorPuntaje=puntosTotalesJugadorDos;
     }
-    else{
+    else
+    {
         jugadorMayorPuntaje= "EMPATE";/// como ambos empataron en rondas y en puntos no hay ganador, es un empate
         mayorPuntaje=puntosTotalesJugadorDos; /// como ambos empataron en rondas y en puntos es indistinto que puntaje mayor se ponga
     }

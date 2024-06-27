@@ -141,7 +141,7 @@
 
 1719441120 c:\users\user\desktop\proyecto_final_programacioni\menu.h
 
-1719441385 c:\users\user\desktop\proyecto_final_programacioni\jugar.h
+1719496791 c:\users\user\desktop\proyecto_final_programacioni\jugar.h
 
 1719441120 source:c:\users\user\desktop\proyecto_final_programacioni\menu.cpp
 	<iostream>
@@ -152,7 +152,7 @@
 	"estadistica.h"
 	"creditos.h"
 
-1719441299 source:c:\users\user\desktop\proyecto_final_programacioni\jugar.cpp
+1719497409 source:c:\users\user\desktop\proyecto_final_programacioni\jugar.cpp
 	<iostream>
 	<cstdlib>
 	<ctime>
@@ -161,7 +161,7 @@
 	"dibujos.h"
 	"estadistica.h"
 
-1719441120 source:c:\users\user\desktop\proyecto_final_programacioni\dibujos.cpp
+1719497409 source:c:\users\user\desktop\proyecto_final_programacioni\dibujos.cpp
 	<iostream>
 	"rlutil.h"
 	"dibujos.h"

@@ -20,7 +20,7 @@ void repartirCartas(std::string const vecValor[], std::string const vecFigura[],
 
 ///funciones para cambio de embaucadora
 bool cambiarEmbaucadora(std::string jugador);
-void implementarCambioEmbaucadora(int ronda,std::string jugador, int &puntosAcumulados, const std::string VEC_FIGURA[], int tamFigura, std::string mazoValorMano[], std::string mazoFiguraMano[],int puntosCartasJugador[], int puntosCartasOponente[], int &puntosRondaJugador, int &puntosRondaOponente, int costo, bool confirmacionUno, bool confirmacionDos, int posz);
+void implementarCambioEmbaucadora(int ronda,std::string jugador, int &puntosAcumulados, const std::string VEC_FIGURA[], int tamFigura, std::string mazoValorMano[], std::string mazoFiguraMano[],int puntosCartasJugador[], int puntosCartasOponente[], int &puntosRondaJugador, int &puntosRondaOponente, int costo, bool &confirmacionUno, bool &confirmacionDos, int posz);
 
 
 ///funcion para determinar el ganador
