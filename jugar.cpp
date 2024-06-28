@@ -44,6 +44,8 @@ void jugar(string &nombreGanador, int &puntajeGanador, string &jugadorMejorPunta
     //ciclo de juego
     for (int ronda = 1; ronda <= CANT_RONDAS; ronda++)
     {
+        confirmacionUno=false;//reinicio valores booleanos en cada ronda para que tome bien las respuestas
+        confirmacionDos=false;
         dibujarEncabezado("EMBAUCADO");
         centrarTexto(3, "Ronda #" + to_string(ronda));
         centrarTexto(4, vecJugadores[0] + " VS " + vecJugadores[1]);
@@ -88,6 +90,7 @@ void jugar(string &nombreGanador, int &puntajeGanador, string &jugadorMejorPunta
             confirmacionDos=cambiarEmbaucadora(vecJugadores[1]);
             if(confirmacionDos)
             {
+
                 implementarCambioEmbaucadora(ronda,vecJugadores[1], puntosAcumuladosJugadorDos, VEC_FIGURA, 4, mazoValorMano, mazoFiguraMano, puntosCartasJugadorDos, puntosCartasJugadorUno, puntosRondaJugadorDos[ronda - 1], puntosRondaJugadorUno[ronda - 1], costo,confirmacionUno,confirmacionDos,31);
 
             }
@@ -367,7 +370,7 @@ void implementarCambioEmbaucadora(int ronda,string jugador, int &puntosAcumulado
             cout << "  Mazo de " << jugador << " (" << puntosAcumulados << " puntos)";
             calcularPuntosCartas(puntosCartasJugador, puntosCartasOponente, mazoValorMano, mazoFiguraMano, nuevaEmbaucadora);
         }
-        else  if((ronda == 2 && confirmacionDos) || (ronda == 3 && confirmacionDos))
+        else
         {
 
             rlutil::locate(1, 18);

@@ -116,7 +116,7 @@
 	"menu.h"
 	"jugar.h"
 
-1719441120 source:c:\users\user\desktop\proyecto_final_programacioni\main.cpp
+1719534105 source:c:\users\user\desktop\proyecto_final_programacioni\main.cpp
 	<iostream>
 	<cstdlib>
 	<ctime>
@@ -125,7 +125,7 @@
 	"jugar.h"
 	"dibujos.h"
 
-1719441120 c:\users\user\desktop\proyecto_final_programacioni\rlutil.h
+1719534105 c:\users\user\desktop\proyecto_final_programacioni\rlutil.h
 	<iostream>
 	<string>
 	<cstdio>
@@ -139,11 +139,11 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1719441120 c:\users\user\desktop\proyecto_final_programacioni\menu.h
+1719534105 c:\users\user\desktop\proyecto_final_programacioni\menu.h
 
-1719496791 c:\users\user\desktop\proyecto_final_programacioni\jugar.h
+1719534105 c:\users\user\desktop\proyecto_final_programacioni\jugar.h
 
-1719441120 source:c:\users\user\desktop\proyecto_final_programacioni\menu.cpp
+1719534105 source:c:\users\user\desktop\proyecto_final_programacioni\menu.cpp
 	<iostream>
 	"rlutil.h"
 	"menu.h"
@@ -152,7 +152,7 @@
 	"estadistica.h"
 	"creditos.h"
 
-1719497409 source:c:\users\user\desktop\proyecto_final_programacioni\jugar.cpp
+1719534961 source:c:\users\user\desktop\proyecto_final_programacioni\jugar.cpp
 	<iostream>
 	<cstdlib>
 	<ctime>
@@ -161,23 +161,23 @@
 	"dibujos.h"
 	"estadistica.h"
 
-1719497409 source:c:\users\user\desktop\proyecto_final_programacioni\dibujos.cpp
+1719534105 source:c:\users\user\desktop\proyecto_final_programacioni\dibujos.cpp
 	<iostream>
 	"rlutil.h"
 	"dibujos.h"
 
-1719442047 c:\users\user\desktop\proyecto_final_programacioni\dibujos.h
+1719534105 c:\users\user\desktop\proyecto_final_programacioni\dibujos.h
 
-1719441120 source:c:\users\user\desktop\proyecto_final_programacioni\creditos.cpp
+1719534105 source:c:\users\user\desktop\proyecto_final_programacioni\creditos.cpp
 	<iostream>
 	"rlutil.h"
 	"dibujos.h"
 
-1719441120 c:\users\user\desktop\proyecto_final_programacioni\creditos.h
+1719534105 c:\users\user\desktop\proyecto_final_programacioni\creditos.h
 
-1719441120 c:\users\user\desktop\proyecto_final_programacioni\estadistica.h
+1719534105 c:\users\user\desktop\proyecto_final_programacioni\estadistica.h
 
-1719441120 source:c:\users\user\desktop\proyecto_final_programacioni\estadistica.cpp
+1719534105 source:c:\users\user\desktop\proyecto_final_programacioni\estadistica.cpp
 	<iostream>
 	"rlutil.h"
 	"dibujos.h"
